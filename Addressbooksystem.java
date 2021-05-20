@@ -1,123 +1,133 @@
 package addressBook;
 import java.util.Scanner;
 
-class AddressBook {
-	private String firstName;
-	private String lastName;
-	private String city;
-	private String state;
-	private String pin;
-	private String mobileNo;
-	private String email;
+class person
+{
+	private String pFname, pLname;
+	private String pAddr, pCity, pEmail;
+	private String pPhone, pZip;
 
-	public AddressBook(String firstName, String lastName, String city, String state, String pin, String mobileNo,
-			String email) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.city = city;
-		this.state = state;
-		this.pin = pin;
-		this.mobileNo = mobileNo;
-		this.email = email;
+	public void setFname_Lname(String FirstName,String LastName)
+	{
+		pFname = FirstName;
+		pLname = LastName;
 	}
-	public String getFirstName() {
-		return firstName;
+	
+	public void setAddr_pCity(String personAddr, String personCity)
+	{
+		pAddr = personAddr;
+		pCity = personCity;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	
+	public void setEmail_pPhone(String personEmail , String personPhone)
+	{
+		pEmail = personEmail ;
+		pPhone = personPhone ;
 	}
-	public String getLastName() {
-		return lastName;
+	
+	public void setZip(String person_zip)
+	{
+		pZip = person_zip;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	
+	public String getAddr()
+	{
+		return pAddr;
 	}
-	public String getCity() {
-		return city;
+	
+	public String getCity() 
+	{
+		return pCity;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	
+	public String getFirstName()
+	{
+		return pFname;
 	}
-	public String getState() {
-		return state;
+	
+	public String getLastName()
+	{
+		return pLname;
 	}
-	public void setState(String state) {
-		this.state = state;
+	
+	public String getEmail()
+	{
+		return pEmail;
 	}
-	public String getPin() {
-		return pin;
+	
+	public String getPhone()
+	{
+		return pPhone;
 	}
-	public void setPin(String pin) {
-		this.pin = pin;
+	
+	public String getzip()
+	{
+		return pZip;
 	}
-	public String getMobileNo() {
-		return mobileNo;
-	}
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "AddressBook [firstName=" + firstName + ", lastName=" + lastName + ", city=" + city + ", state=" + state
-				+ ", pin=" + pin + ", mobileNo=" + mobileNo + ", email=" + email + "]";
-	}
-
-}
-
-public class Addressbooksystem {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-
-		AddressBook add[] = new AddressBook[10];
-		int count = 0;
-		String firstName;
-		String lastName;
-		String city;
-		String state;
-		String pin;
-		String mobileNo;
-		String email;
-
-		
-			System.out.println("Add Details ");
-
-			System.out.println("Enter how many Address Details you want to add");
-			int num=sc.nextInt();
-			for(int i=0;i<num;i++) {
-			System.out.println("Enter first and last name");
-			firstName = sc.next();
-			lastName = sc.next();
-			System.out.println("Enter city");
-			city = sc.next();
-			System.out.println("Enter state");
-			state = sc.next();
-			System.out.println("Enter pin");
-			pin = sc.next();
-			System.out.println("Enter Mobile number");
-			mobileNo = sc.next();
-			System.out.println("Enter Email Id");
-			email = sc.next();
-
-			add[count] = new AddressBook(firstName, lastName, city, state, pin, mobileNo, email); 
-			}
-			count++;
-			System.out.println("Details added successfully");
-			System.out.println("All Details");
-			for(int i = 0; i < count; i++) {
-				System.out.println(add[i]); 
-			}
-			
-
-			
-		
+	
+	public person(String Fname, String Lname, String paddr, String pcity ,String pemail, String phn_no, String pzip)
+	{
+		setFname_Lname(Fname, Lname);
+		setAddr_pCity(paddr, pcity);
+		setEmail_pPhone(pemail, phn_no);
+		setZip(pzip);
 	}
 }
 
+
+
+
+public class Addressbooksystem 
+{
+	public static void main(String[] args) 
+	{
+		Scanner scan = new Scanner(System.in);
+		String[] arr = new String[7]; 
+		int i;
+		String Fname, Lname, Addr, city, email, phone, zip; 
+		person obj = new person("Ashok", "Patel","xyzArea", "raj", "abc@gmail.com", "333333333","4255");
+		Fname=obj.getFirstName();
+		Lname=obj.getLastName();
+		Addr=obj.getAddr();
+		city=obj.getCity();
+		email=obj.getEmail();
+		phone=obj.getPhone();
+		zip=obj.getzip();
+		
+		arr[0] = Fname;
+		arr[1] = Lname;
+		arr[2] = Addr;
+		arr[3] = city;
+		arr[4] = email;
+		arr[5] = phone;
+		arr[6] = zip;
+
+		System.out.println("Person data in array:");
+		
+		for ( i = 0; i < arr.length; i++) 
+		{
+			System.out.println(arr[i]);
+		}
+		
+		System.out.println("Enter location you need to update:");
+		int loc = scan.nextInt();
+		System.out.println("Enter which you want to be update:");
+		String isEdit = scan.next();
+		System.out.println("Enter your Zip for verification:");
+		String isZip = scan.next();
+		
+		for( i = loc; i< arr.length; i++ )
+		{
+			if ( isZip.equals(zip) && i == loc )
+			{
+				arr[i]=isEdit;
+			}
+		}
+		
+		System.out.println("Array after modification:");
+		for( i = 0; i <arr.length; i++ )
+		{
+			System.out.println(arr[i]);
+		}
+	}
+}
